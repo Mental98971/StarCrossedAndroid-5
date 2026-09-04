@@ -22,7 +22,7 @@ import com.google.common.util.concurrent.Futures
 import com.google.common.util.concurrent.ListenableFuture
 
 /**
-private const val DIAG_TAG = "StarCrossedMedia"
+private const val "StarCrossedMedia" = "StarCrossedMedia"
  * StarCrossedMediaSession
  * ─────────────────────────────────────────────────────────────────────────
  * ARCHITECTURE DECISION (read this before touching this file):
@@ -130,7 +130,7 @@ class WebViewProxyPlayer(
         hasTrack: Boolean,
         artwork: Bitmap?
     ) {
-        Log.d(DIAG_TAG, "updateFromJs: isPlaying=$isPlaying hasTrack=$hasTrack posMs=$positionMs (was isPlaying=${this.isPlaying})")
+        Log.d("StarCrossedMedia", "updateFromJs: isPlaying=$isPlaying hasTrack=$hasTrack posMs=$positionMs (was isPlaying=${this.isPlaying})")
         this.title = title
         this.artist = artist
         this.album = album
@@ -188,24 +188,24 @@ class WebViewProxyPlayer(
     // ── Command handlers: forward to JS, let the JS event pipeline report
     //    the real result back through PlaybackStateManager -> updateFromJs.
     override fun handleSetPlayWhenReady(playWhenReady: Boolean): ListenableFuture<*> {
-        Log.d(DIAG_TAG, "handleSetPlayWhenReady($playWhenReady) — forwarding to JS")
+        Log.d("StarCrossedMedia", "handleSetPlayWhenReady($playWhenReady) — forwarding to JS")
         sendCommand(JsCommand.SetPlayWhenReady(playWhenReady))
         return Futures.immediateVoidFuture()
     }
 
     override fun handlePrepare(): ListenableFuture<*> {
-        Log.d(DIAG_TAG, "handlePrepare()")
+        Log.d("StarCrossedMedia", "handlePrepare()")
         return Futures.immediateVoidFuture()
     }
 
     override fun handleStop(): ListenableFuture<*> {
-        Log.d(DIAG_TAG, "handleStop() — forwarding to JS")
+        Log.d("StarCrossedMedia", "handleStop() — forwarding to JS")
         sendCommand(JsCommand.Stop)
         return Futures.immediateVoidFuture()
     }
 
     override fun handleSeek(mediaItemIndex: Int, positionMs: Long, seekCommand: Int): ListenableFuture<*> {
-        Log.d(DIAG_TAG, "handleSeek(seekCommand=$seekCommand, posMs=$positionMs)")
+        Log.d("StarCrossedMedia", "handleSeek(seekCommand=$seekCommand, posMs=$positionMs)")
         // COMMAND_SEEK_TO_NEXT and COMMAND_SEEK_TO_NEXT_MEDIA_ITEM (same for
         // PREVIOUS) are deliberately treated identically here — see the class
         // doc comment above for why both must be declared AND handled alike.
@@ -220,7 +220,7 @@ class WebViewProxyPlayer(
     }
 
     override fun handleRelease(): ListenableFuture<*> {
-        Log.d(DIAG_TAG, "handleRelease()")
+        Log.d("StarCrossedMedia", "handleRelease()")
         return Futures.immediateVoidFuture()
     }
 
@@ -285,7 +285,7 @@ fun buildStarCrossedSession(
             session: MediaSession,
             controller: MediaSession.ControllerInfo
         ): MediaSession.ConnectionResult {
-            Log.d(DIAG_TAG, "onConnect: controller pkg=${controller.packageName} uid=${controller.uid}")
+            Log.d("StarCrossedMedia", "onConnect: controller pkg=${controller.packageName} uid=${controller.uid}")
             val sessionCommands = SessionCommands.Builder()
                 .addSessionCommands(MediaSession.ConnectionResult.DEFAULT_SESSION_COMMANDS.commands)
                 .add(TOGGLE_FAVORITE_COMMAND)
@@ -314,7 +314,7 @@ fun buildStarCrossedSession(
             controller: MediaSession.ControllerInfo,
             playerCommand: Int
         ): Int {
-            Log.d(DIAG_TAG, "onPlayerCommandRequest: pkg=${controller.packageName} command=$playerCommand")
+            Log.d("StarCrossedMedia", "onPlayerCommandRequest: pkg=${controller.packageName} command=$playerCommand")
             return SessionResult.RESULT_SUCCESS
         }
 
