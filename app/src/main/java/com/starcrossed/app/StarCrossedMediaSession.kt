@@ -22,6 +22,7 @@ import com.google.common.util.concurrent.Futures
 import com.google.common.util.concurrent.ListenableFuture
 
 /**
+private const val DIAG_TAG = "StarCrossedMedia"
  * StarCrossedMediaSession
  * ─────────────────────────────────────────────────────────────────────────
  * ARCHITECTURE DECISION (read this before touching this file):
