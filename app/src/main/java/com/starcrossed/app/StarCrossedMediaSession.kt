@@ -240,7 +240,6 @@ class WebViewProxyPlayer(
         // chronological stream across native session/service/bridge and (via
         // StarCrossedWebBridge.log) the JS side. Remove alongside the rest of this
         // pass's logging once root cause is confirmed.
-        private const val DIAG_TAG = "SCMediaService"
     }
 }
 
