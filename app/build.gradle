@@ -1,0 +1,71 @@
+plugins {
+    id 'com.android.application'
+    id 'org.jetbrains.kotlin.android'
+}
+
+android {
+    namespace 'com.starcrossed.app'
+    compileSdk 34
+
+    defaultConfig {
+        applicationId "com.starcrossed.app"
+        minSdk 26          // Oreo — required for notification channels & adaptive
+                            // icons anyway, and lets us skip legacy raster launcher
+                            // icon generation entirely (see mipmap-anydpi-v26/).
+        targetSdk 34
+        versionCode 7
+        versionName "47.0-android7-diag" // see README §0 (2026-09-03 entry) — diagnostic build
+
+        vectorDrawables { useSupportLibrary true }
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false // no obfuscation needed for a single-app WebView
+                                 // wrapper; flip on + tune proguard-rules.pro if
+                                 // you want it.
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+        debug {
+            applicationIdSuffix ".debug"
+            debuggable true
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
+    }
+    kotlinOptions {
+        jvmTarget = "17"
+    }
+
+    buildFeatures {
+        buildConfig true
+    }
+}
+
+dependencies {
+    implementation 'androidx.core:core-ktx:1.13.1'
+    implementation 'androidx.appcompat:appcompat:1.7.0'
+    implementation 'androidx.activity:activity-ktx:1.9.0'
+    implementation 'androidx.core:core-splashscreen:1.0.1'
+    implementation 'androidx.webkit:webkit:1.11.0'
+    implementation 'com.google.android.material:material:1.12.0'
+
+    // Media3 session + common ONLY. media3-exoplayer is intentionally NOT a
+    // dependency here — this app's actual audio engine is the Web Audio API
+    // graph running inside the WebView (crossfade, EQ, compressor, visualizer
+    // analyser, ambient synth — none of which exist in ExoPlayer). Media3 is
+    // used purely as the OS-integration layer via a SimpleBasePlayer proxy.
+    // See StarCrossedMediaSession.kt for the full rationale.
+    def media3_version = '1.4.1'
+    implementation "androidx.media3:media3-session:$media3_version"
+    implementation "androidx.media3:media3-common:$media3_version"
+
+    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.8.1'
+
+    testImplementation 'junit:junit:4.13.2'
+    androidTestImplementation 'androidx.test.ext:junit:1.2.1'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.6.1'
+}

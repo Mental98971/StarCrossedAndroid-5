@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Mirrors the HTML's :root CSS custom properties for visual continuity
+         between the native shell (splash, widget, notification accent) and
+         the WebView content itself. -->
+    <color name="sc_void">#010108</color>
+    <color name="sc_surface">#0B0B1A</color>
+    <color name="sc_cy">#00EEFF</color>
+    <color name="sc_pu">#A855F7</color>
+    <color name="sc_pk">#F472B6</color>
+    <color name="sc_tx0">#FFFFFF</color>
+    <color name="sc_tx1">#DDE2FF</color>
+    <color name="sc_tx2">#5E72A0</color>
+    <color name="sc_tx3">#272E4A</color>
+    <color name="sc_widget_bg">#DD0B0B1A</color>
+</resources>

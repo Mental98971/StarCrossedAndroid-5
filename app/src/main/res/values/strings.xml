@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">STAR CROSSED</string>
+
+    <string name="widget_description">STAR CROSSED playback controls</string>
+    <string name="widget_idle_title">STAR CROSSED</string>
+    <string name="widget_idle_subtitle">Nothing playing</string>
+    <string name="widget_art_description">Album artwork</string>
+    <string name="widget_play_pause_description">Play or pause</string>
+    <string name="widget_next_description">Next track</string>
+    <string name="widget_previous_description">Previous track</string>
+</resources>

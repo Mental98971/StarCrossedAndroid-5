@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+   Standard Android Studio template defaults. STAR CROSSED's actual library
+   data (audio blobs, playlists, lyrics cache) lives in the WebView's own
+   IndexedDB, which Android's auto-backup does not include by default via
+   this mechanism anyway — nothing app-specific to exclude here.
+-->
+<full-backup-content>
+</full-backup-content>
